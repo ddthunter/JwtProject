@@ -16,6 +16,13 @@ public record ResultBean<T>(int code, String msg, T data) {
         return new ResultBean<>(code, msg, null);
     }
 
+    public static <T> ResultBean<T> unauthorized(String msg) {
+        return failure(401, msg);
+    }
+    public static <T> ResultBean<T> forbidden(String msg) {
+        return failure(403, msg);
+    }
+
     public String asJsonString() {
         return JSONObject.toJSONString(this, JSONWriter.Feature.WriteNulls);
     }
